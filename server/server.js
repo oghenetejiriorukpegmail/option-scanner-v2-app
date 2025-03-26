@@ -40,6 +40,86 @@ app.get('/api/stocks/:symbol/daily', async (req, res) => {
   }
 });
 
+// --- Technical Indicator Endpoints ---
+
+// Endpoint for EMA
+app.get('/api/stocks/:symbol/ema', async (req, res) => {
+  const symbol = req.params.symbol?.toUpperCase();
+  const {
+    time_period = 10, // Default to 10 period
+    interval = 'daily',
+    series_type = 'close'
+  } = req.query;
+
+  if (!symbol) {
+    return res.status(400).json({ error: 'Stock symbol parameter is required.' });
+  }
+
+  try {
+    const data = await alphaVantageService.fetchEMA(symbol, parseInt(time_period), interval, series_type);
+    res.status(200).json(data);
+  } catch (error) {
+    console.error(`Error fetching EMA for ${symbol}:`, error);
+    res.status(500).json({ error: 'Failed to fetch EMA data.', details: error.message });
+  }
+});
+
+// Endpoint for RSI
+app.get('/api/stocks/:symbol/rsi', async (req, res) => {
+  const symbol = req.params.symbol?.toUpperCase();
+  const {
+    time_period = 14, // Default to 14 period
+    interval = 'daily',
+    series_type = 'close'
+  } = req.query;
+
+  if (!symbol) {
+    return res.status(400).json({ error: 'Stock symbol parameter is required.' });
+  }
+
+  try {
+    const data = await alphaVantageService.fetchRSI(symbol, parseInt(time_period), interval, series_type);
+    res.status(200).json(data);
+  } catch (error) {
+    console.error(`Error fetching RSI for ${symbol}:`, error);
+    res.status(500).json({ error: 'Failed to fetch RSI data.', details: error.message });
+  }
+});
+
+// Endpoint for STOCH
+app.get('/api/stocks/:symbol/stoch', async (req, res) => {
+  const symbol = req.params.symbol?.toUpperCase();
+  const {
+    interval = 'daily',
+    fastkperiod = 5,
+    slowkperiod = 3,
+    slowdperiod = 3,
+    slowkmatype = 0, // SMA default
+    slowdmatype = 0  // SMA default
+  } = req.query;
+
+  if (!symbol) {
+    return res.status(400).json({ error: 'Stock symbol parameter is required.' });
+  }
+
+  try {
+    const data = await alphaVantageService.fetchStoch(
+      symbol,
+      interval,
+      parseInt(fastkperiod),
+      parseInt(slowkperiod),
+      parseInt(slowdperiod),
+      parseInt(slowkmatype),
+      parseInt(slowdmatype)
+    );
+    res.status(200).json(data);
+  } catch (error) {
+    console.error(`Error fetching STOCH for ${symbol}:`, error);
+    res.status(500).json({ error: 'Failed to fetch STOCH data.', details: error.message });
+  }
+});
+
+
 // --- Server Start ---
 
 app.listen(PORT, () => {
