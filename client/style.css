@@ -43,6 +43,28 @@ main {
 #results-container {
     /* Styles for results table/list will go here */
     min-height: 100px; /* Placeholder height */
-    border: 1px dashed #ccc;
-    padding: 1rem;
+    /* Remove dashed border if table is present */
+    /* border: 1px dashed #ccc; */
+    padding: 0; /* Remove padding if table handles it */
+}
+
+#results-container table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+#results-container th,
+#results-container td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+#results-container th {
+    background-color: #f2f2f2;
+}
+
+#results-container tr:nth-child(even) {
+    background-color: #f9f9f9;
 }
