@@ -1,0 +1,28 @@
+{
+  "name": "option-scanner-v2-app",
+  "version": "1.0.0",
+  "description": "This project is a web application designed to scan stocks and options based on the \"Options-Technical Hybrid Strategy\". It integrates technical analysis indicators and options market data to help retail traders identify potential trading opportunities.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "concurrently \"npm run dev --prefix server\" \"http-server ./client -p 8080 -o\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oghenetejiriorukpegmail/option-scanner-v2-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oghenetejiriorukpegmail/option-scanner-v2-app/issues"
+  },
+  "homepage": "https://github.com/oghenetejiriorukpegmail/option-scanner-v2-app#readme",
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "http-server": "^14.1.1"
+  }
+}
