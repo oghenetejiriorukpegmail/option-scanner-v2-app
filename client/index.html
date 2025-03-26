@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Option Scanner v2</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Option Scanner v2</h1>
+    </header>
+
+    <main>
+        <section id="scanner-controls">
+            <h2>Scanner Filters</h2>
+            <form id="scanner-form">
+                <label for="setup-type">Setup Type:</label>
+                <select id="setup-type" name="setupType">
+                    <option value="bullish">Bullish</option>
+                    <option value="bearish">Bearish</option>
+                    <option value="neutral">Neutral</option>
+                    <option value="custom">Custom</option>
+                </select>
+                <!-- Add more filter inputs here based on PRD -->
+                <button type="submit">Scan</button>
+            </form>
+        </section>
+
+        <section id="scanner-results">
+            <h2>Results</h2>
+            <div id="results-container">
+                <!-- Results will be loaded here -->
+                <p>No scan performed yet.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Option Scanner v2</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
